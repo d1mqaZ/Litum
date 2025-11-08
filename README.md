@@ -1,3 +1,6 @@
+```html
+<!DOCTYPE html>
+<html lang="ru">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
@@ -61,6 +64,13 @@
             margin-top: 4px;
         }
 
+        .input-group {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px;
+            margin-bottom: 20px;
+        }
+
         .form-section {
             background: #f8f9fa;
             border-radius: 12px;
@@ -108,22 +118,62 @@
             box-shadow: 0 0 0 3px var(--input-focus);
         }
 
+        .button-group {
+            display: flex;
+            gap: 12px;
+            margin-top: 20px;
+        }
+
         button {
-            width: 100%;
             padding: 14px;
-            background: var(--accent);
-            color: white;
             border: none;
             border-radius: 8px;
             font-size: 16px;
             font-weight: 500;
             cursor: pointer;
-            margin-top: 20px;
             transition: background 0.2s;
         }
 
-        button:hover {
+        .calculate-btn {
+            flex: 1;
+            background: var(--accent);
+            color: white;
+        }
+
+        .calculate-btn:hover {
             background: var(--accent-hover);
+        }
+
+        .pdf-btn {
+            background: #28a745;
+            color: white;
+        }
+
+        .pdf-btn:hover {
+            background: #218838;
+        }
+
+        /* Подсказка при наведении */
+        .pdf-btn::after {
+            content: attr(data-title);
+            position: absolute;
+            bottom: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #333;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 4px;
+            font-size: 14px;
+            white-space: nowrap;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.2s;
+            z-index: 1000;
+        }
+
+        .pdf-btn:hover::after {
+            opacity: 1;
         }
 
         .results-section {
@@ -163,19 +213,19 @@
         /* Адаптация под разные размеры экрана */
         @media (min-width: 1024px) {
             .form-grid {
-                grid-template-columns: repeat(3, 1fr); /* 3 колонки на больших экранах */
+                grid-template-columns: repeat(3, 1fr);
             }
         }
 
         @media (max-width: 1023px) and (min-width: 768px) {
             .form-grid {
-                grid-template-columns: repeat(2, 1fr); /* 2 колонки на планшетах */
+                grid-template-columns: repeat(2, 1fr);
             }
         }
 
         @media (max-width: 767px) {
             .form-grid {
-                grid-template-columns: 1fr; /* 1 колонка на мобильных */
+                grid-template-columns: 1fr;
             }
 
             .container {
@@ -201,6 +251,10 @@
             .result-value {
                 margin-top: 4px;
             }
+
+            .button-group {
+                flex-direction: column;
+            }
         }
 
         @media (max-width: 480px) {
@@ -222,7 +276,7 @@
 
             input {
                 padding: 12px 10px;
-                font-size: 16px; /* Увеличен шрифт для удобства */
+                font-size: 16px;
             }
 
             button {
@@ -234,6 +288,117 @@
                 font-size: 14px;
             }
         }
+
+        /* Стили для печати */
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+
+            .container {
+                box-shadow: none;
+                border-radius: 0;
+                padding: 20px;
+                max-width: 100%;
+            }
+
+            .form-section, .button-group {
+                display: none;
+            }
+
+            .results-section {
+                border: 1px solid #ccc;
+                background: white;
+            }
+
+            .results-section h2 {
+                font-size: 20px;
+                margin-bottom: 20px;
+            }
+
+            .result-label {
+                font-weight: bold;
+            }
+
+            .print-header {
+                text-align: center;
+                margin-bottom: 20px;
+            }
+
+            .print-header img {
+                max-height: 80px;
+                display: block;
+                margin: 0 auto 10px;
+            }
+
+            .print-header h1 {
+                font-size: 22px;
+                margin: 0;
+            }
+
+            .print-header p {
+                font-size: 13px;
+                color: #666;
+                margin: 5px 0 0;
+            }
+
+            .result-item {
+                padding: 6px 0;
+                font-size: 14px;
+            }
+
+            .result-label {
+                font-size: 14px;
+            }
+
+            .result-value {
+                font-size: 14px;
+            }
+
+            /* Выводим все поля ввода при печати */
+            .print-data {
+                page-break-inside: avoid;
+                margin-bottom: 20px;
+                padding: 16px;
+                border: 1px solid #ddd;
+                background: white;
+            }
+
+            .print-data h3 {
+                margin-top: 0;
+                font-size: 16px;
+                color: #333;
+                padding-bottom: 8px;
+                border-bottom: 1px solid #eee;
+                font-weight: 500;
+            }
+
+            .print-data-grid {
+                display: grid;
+                grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                gap: 16px;
+                margin-top: 10px;
+            }
+
+            .print-data-item {
+                display: flex;
+                flex-direction: column;
+                gap: 4px;
+            }
+
+            .print-data-label {
+                font-weight: 500;
+                font-size: 13px;
+                color: #333;
+            }
+
+            .print-data-value {
+                font-weight: 700;
+                font-size: 14px;
+                color: #0d4a7f;
+            }
+        }
     </style>
 </head>
 <body>
@@ -242,6 +407,81 @@
         <div class="logo">
             <img src="Litum logo.png" alt="Litum logo">
             <div class="subtitle">Расчёт теоретического расхода краски</div>
+        </div>
+
+        <div class="input-group">
+            <div class="form-group">
+                <label for="product">Продукт:</label>
+                <input list="paint_list" id="product" value="" placeholder="Выберите или введите продукт">
+                <datalist id="paint_list">
+                    <option value="Литабонд Винил">
+                    <option value="Литабонд">
+                    <option value="Литакоут Акрил">
+                    <option value="Литакоут Алкид">
+                    <option value="Литакоут Классик">
+                    <option value="Литакоут Матт">
+                    <option value="Литакоут Плюс">
+                    <option value="Литакоут Флекси">
+                    <option value="Литакоут Фрост">
+                    <option value="Литакоут Фрост  ">
+                    <option value="Литакоут Фрост У  ">
+                    <option value="Литакоут Футура">
+                    <option value="Литакоут Экспресс Алкид">
+                    <option value="Литакоут Эпокс">
+                    <option value="Литалак Сил">
+                    <option value="Литамастик 180">
+                    <option value="Литамастик 190">
+                    <option value="Литамастик 190 Ст">
+                    <option value="Литамастик 280">
+                    <option value="Литамастик 287">
+                    <option value="Литамастик 290">
+                    <option value="Литамастик 290 Ст">
+                    <option value="Литамастик Универсал 10">
+                    <option value="Литамастик Универсал 20">
+                    <option value="Литапрайм 500">
+                    <option value="Литапрайм Акрил">
+                    <option value="Литапрайм Гидро">
+                    <option value="Литапрайм Сил">
+                    <option value="Литапрайм Спринт">
+                    <option value="Литапрайм Финиш">
+                    <option value="Литапрайм Цинк 80">
+                    <option value="Литапрайм Цинк ЭС">
+                    <option value="Литапрайм Экспресс Алкид">
+                    <option value="Литапрайм Экспресс МИО">
+                    <option value="Литапрайм Экспресс Мульти">
+                    <option value="Литапрайм Экспресс">
+                    <option value="Литапрайм Экспресс Ф">
+                    <option value="Литатанк АС">
+                    <option value="Литатанк Классик">
+                    <option value="Литатанк Плюс">
+                    <option value="Литатанк Стандарт">
+                    <option value="Литатанк Стронг">
+                    <option value="Литатанк ЦПВ">
+                    <option value="Литатерм 250">
+                    <option value="Литатерм Финиш">
+                    <option value="Литатерм Цинк 540">
+                    <option value="Литатерм Цинк ЭС">
+                    <option value="Литачар Акрил">
+                    <option value="Литачар Изотерм Э">
+                    <option value="Литачар Эпокс">
+                    <option value="Литум Бриз">
+                    <option value="Литум Колор ОР">
+                    <option value="Литум Сирокко">
+                    <option value="Литум Шоппраймер Цинк">
+                    <option value="Литум Шоппраймер ЭП">
+                    <option value="Литум Экстрим">
+                </datalist>
+            </div>
+
+            <div class="form-group">
+                <label for="color">Цвет:</label>
+                <input type="text" id="color" value="" placeholder="Например Серый">
+            </div>
+
+            <div class="form-group">
+                <label for="batch_number">Номер партии:</label>
+                <input type="text" id="batch_number" value="" placeholder="например LO0-2222.1.2">
+            </div>
         </div>
 
         <section class="form-section">
@@ -294,7 +534,10 @@
                 </div>
             </div>
 
-            <button onclick="calculate()">🚀 Рассчитать</button>
+            <div class="button-group">
+                <button class="calculate-btn" onclick="calculate()">🚀 Рассчитать</button>
+                <button class="pdf-btn" data-title="в поле &quot;Принтер&quot; выберите &quot;Сохранить как PDF&quot;" onclick="printWithAllData()">📄 Сохранить как PDF</button>
+            </div>
         </section>
 
         <section class="results-section">
@@ -309,6 +552,9 @@
 
     <script>
         function calculate() {
+            const product = document.getElementById('product').value;
+            const color = document.getElementById('color').value;
+            const batchNumber = document.getElementById('batch_number').value;
             const dft = parseFloat(document.getElementById('dft').value);
             const mass_blank = parseFloat(document.getElementById('mass_blank').value);
             const mass_wet_full = parseFloat(document.getElementById('mass_wet').value);
@@ -362,6 +608,18 @@
 
             document.getElementById('result').innerHTML = `
                 <div class="result-item">
+                    <span class="result-label">Продукт:</span>
+                    <span class="result-value">${product || 'Не указано'}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Цвет:</span>
+                    <span class="result-value">${color || 'Не указано'}</span>
+                </div>
+                <div class="result-item">
+                    <span class="result-label">Номер партии:</span>
+                    <span class="result-value">${batchNumber || 'Не указано'}</span>
+                </div>
+                <div class="result-item">
                     <span class="result-label">Масса мокрой плёнки:</span>
                     <span class="result-value">${m_wet.toFixed(4)} г</span>
                 </div>
@@ -388,8 +646,162 @@
             `;
         }
 
+        function printWithAllData() {
+            // Создаём окно для печати
+            const printWindow = window.open('', '_blank');
+            printWindow.document.write(`
+                <!DOCTYPE html>
+                <html lang="ru">
+                <head>
+                    <meta charset="UTF-8">
+                    <title>Результаты расчёта</title>
+                    <style>
+                        @page {
+                            size: A4;
+                            margin: 1cm;
+                        }
+                        body {
+                            font-family: Arial, sans-serif;
+                            padding: 0;
+                            margin: 0;
+                            font-size: 14px;
+                        }
+                        .print-header {
+                            text-align: center;
+                            margin-bottom: 20px;
+                        }
+                        .print-header img {
+                            max-height: 60px;
+                            display: block;
+                            margin: 0 auto 10px;
+                        }
+                        .print-header h1 {
+                            font-size: 18px;
+                            margin: 0;
+                        }
+                        .print-header p {
+                            font-size: 12px;
+                            color: #666;
+                            margin: 5px 0 0;
+                        }
+                        .print-data {
+                            page-break-inside: avoid;
+                            margin-bottom: 20px;
+                            padding: 16px;
+                            border: 1px solid #ddd;
+                            background: white;
+                        }
+                        .print-data h3 {
+                            margin-top: 0;
+                            font-size: 16px;
+                            color: #333;
+                            padding-bottom: 8px;
+                            border-bottom: 1px solid #eee;
+                            font-weight: 500;
+                        }
+                        .print-data-grid {
+                            display: grid;
+                            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+                            gap: 16px;
+                            margin-top: 10px;
+                        }
+                        .print-data-item {
+                            display: flex;
+                            flex-direction: column;
+                            gap: 4px;
+                        }
+                        .print-data-label {
+                            font-weight: 500;
+                            font-size: 13px;
+                            color: #333;
+                        }
+                        .print-data-value {
+                            font-weight: 700;
+                            font-size: 14px;
+                            color: #0d4a7f;
+                        }
+                        .result-item {
+                            padding: 6px 0;
+                            border-bottom: 1px solid #eee;
+                            display: flex;
+                            justify-content: space-between;
+                        }
+                        .result-label {
+                            font-weight: bold;
+                            flex: 1;
+                        }
+                        .result-value {
+                            font-weight: bold;
+                            text-align: right;
+                            flex: 1;
+                        }
+                    </style>
+                </head>
+                <body>
+                    <div class="print-header">
+                        <img src="${document.querySelector('.logo img').src}" alt="Litum logo">
+                        <h1>Расчёт теоретического расхода краски</h1>
+                        <p>Результаты расчёта</p>
+                    </div>
+
+                    <!-- Данные для расчета -->
+                    <div class="print-data">
+                        <h3>📊 Данные для расчета</h3>
+                        <div class="print-data-grid">
+                            <div class="print-data-item">
+                                <span class="print-data-label">Толщина сухой плёнки (DFT), мкм:</span>
+                                <span class="print-data-value">${document.getElementById('dft').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Вес стекла без краски (г):</span>
+                                <span class="print-data-value">${document.getElementById('mass_blank').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Вес стекла с мокрой краской (г):</span>
+                                <span class="print-data-value">${document.getElementById('mass_wet').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Вес стекла с сухой краской (г):</span>
+                                <span class="print-data-value">${document.getElementById('mass_dry').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Длина пленки (мм):</span>
+                                <span class="print-data-value">${document.getElementById('length_mm').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Ширина пленки (мм):</span>
+                                <span class="print-data-value">${document.getElementById('width_mm').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">МДНВ (для 2-комп. смесь А+В), %:</span>
+                                <span class="print-data-value">${document.getElementById('ms_percent').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Плотность краски (для 2-комп. смесь А+В), г/см³:</span>
+                                <span class="print-data-value">${document.getElementById('rho_wet').value}</span>
+                            </div>
+                            <div class="print-data-item">
+                                <span class="print-data-label">Коэффициент контрастности (0–1):</span>
+                                <span class="print-data-value">${document.getElementById('contrast').value}</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Результаты -->
+                    <div id="print-results">
+                        ${document.getElementById('result').innerHTML}
+                    </div>
+                </body>
+                </html>
+            `);
+            printWindow.document.close();
+            printWindow.print();
+        }
+
         // Автоматически рассчитать при загрузке страницы
         window.onload = calculate;
     </script>
 
 </body>
+</html>
+```

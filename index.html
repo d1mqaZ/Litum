@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-    <title>Программы Litum</title>
+    <title>Расчёт теоретического расхода — Litum</title>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -63,83 +63,6 @@
             margin-top: 4px;
         }
 
-        /* Стили для меню программ */
-        .programs-menu {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-            margin-bottom: 40px;
-        }
-
-        .program-btn {
-            background: rgba(255, 255, 255, 0.95);
-            border: none;
-            padding: 25px;
-            border-radius: 15px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            text-align: center;
-            border: 2px solid transparent;
-        }
-
-        .program-btn:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.2);
-            background: white;
-            border-color: var(--accent);
-        }
-
-        .program-btn h3 {
-            color: #333;
-            margin-bottom: 10px;
-            font-size: 1.4em;
-        }
-
-        .program-btn p {
-            color: #666;
-            font-size: 0.95em;
-        }
-
-        /* Стили для области отображения программ */
-        .program-display {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 15px;
-            padding: 30px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.1);
-            min-height: 400px;
-        }
-
-        .program-content {
-            display: none;
-        }
-
-        .program-content.active {
-            display: block;
-            animation: fadeIn 0.5s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        .back-btn {
-            background: #667eea;
-            color: white;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-bottom: 20px;
-            transition: background 0.3s ease;
-        }
-
-        .back-btn:hover {
-            background: #5a6fd8;
-        }
-
-        /* Общие стили для форм */
         .input-group {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -177,7 +100,7 @@
             font-size: 14px;
         }
 
-        input, select {
+        input {
             width: 100%;
             padding: 12px 12px;
             border: 1px solid var(--border);
@@ -188,7 +111,7 @@
             font-family: inherit;
         }
 
-        input:focus, select:focus {
+        input:focus {
             outline: none;
             border-color: var(--accent);
             box-shadow: 0 0 0 3px var(--input-focus);
@@ -486,271 +409,155 @@
     <div class="container">
         <div class="logo">
             <img src="Litum logo.png" alt="Litum logo">
-            <div class="subtitle">Программы для расчётов</div>
+            <div class="subtitle">Расчёт теоретического расхода краски</div>
         </div>
 
-        <!-- Меню выбора программ -->
-        <div class="programs-menu" id="programsMenu">
-            <button class="program-btn" onclick="showProgram('paint-consumption')">
-                <h3>🧮 Расчёт теоретического расхода краски</h3>
-                <p>Расчёт расхода краски на основе лабораторных данных</p>
-            </button>
-            <button class="program-btn" onclick="showProgram('color-strength')">
-                <h3>🎨 Доводка показателя красящей способности основы Е170</h3>
-                <p>Расчёт доводки силы цвета белых баз</p>
-            </button>
-        </div>
-
-        <!-- Область отображения программ -->
-        <div class="program-display" id="programDisplay">
-            <div class="welcome-message" id="welcomeMessage">
-                <h2 style="text-align: center; color: #333; margin-bottom: 20px;">
-                    Добро пожаловать! 👋
-                </h2>
-                <p style="text-align: center; color: #666; font-size: 1.1em;">
-                    Выберите программу из меню выше, чтобы начать работу
-                </p>
+        <div class="input-group">
+            <div class="form-group">
+                <label for="product">Продукт:</label>
+                <input list="paint_list" id="product" value="" placeholder="Выберите или введите продукт">
+                <datalist id="paint_list">
+                    <option value="Литабонд Винил">
+                    <option value="Литабонд">
+                    <option value="Литакоут Акрил">
+                    <option value="Литакоут Алкид">
+                    <option value="Литакоут Классик">
+                    <option value="Литакоут Матт">
+                    <option value="Литакоут Плюс">
+                    <option value="Литакоут Флекси">
+                    <option value="Литакоут Фрост">
+                    <option value="Литакоут Фрост  ">
+                    <option value="Литакоут Фрост У  ">
+                    <option value="Литакоут Футура">
+                    <option value="Литакоут Экспресс Алкид">
+                    <option value="Литакоут Эпокс">
+                    <option value="Литалак Сил">
+                    <option value="Литамастик 180">
+                    <option value="Литамастик 190">
+                    <option value="Литамастик 190 Ст">
+                    <option value="Литамастик 280">
+                    <option value="Литамастик 287">
+                    <option value="Литамастик 290">
+                    <option value="Литамастик 290 Ст">
+                    <option value="Литамастик Универсал 10">
+                    <option value="Литамастик Универсал 20">
+                    <option value="Литапрайм 500">
+                    <option value="Литапрайм Акрил">
+                    <option value="Литапрайм Гидро">
+                    <option value="Литапрайм Сил">
+                    <option value="Литапрайм Спринт">
+                    <option value="Литапрайм Финиш">
+                    <option value="Литапрайм Цинк 80">
+                    <option value="Литапрайм Цинк ЭС">
+                    <option value="Литапрайм Экспресс Алкид">
+                    <option value="Литапрайм Экспресс МИО">
+                    <option value="Литапрайм Экспресс Мульти">
+                    <option value="Литапрайм Экспресс">
+                    <option value="Литапрайм Экспресс Ф">
+                    <option value="Литатанк АС">
+                    <option value="Литатанк Классик">
+                    <option value="Литатанк Плюс">
+                    <option value="Литатанк Стандарт">
+                    <option value="Литатанк Стронг">
+                    <option value="Литатанк ЦПВ">
+                    <option value="Литатерм 250">
+                    <option value="Литатерм Финиш">
+                    <option value="Литатерм Цинк 540">
+                    <option value="Литатерм Цинк ЭС">
+                    <option value="Литачар Акрил">
+                    <option value="Литачар Изотерм Э">
+                    <option value="Литачар Эпокс">
+                    <option value="Литум Бриз">
+                    <option value="Литум Колор ОР">
+                    <option value="Литум Сирокко">
+                    <option value="Литум Шоппраймер Цинк">
+                    <option value="Литум Шоппраймер ЭП">
+                    <option value="Литум Экстрим">
+                </datalist>
             </div>
 
-            <!-- Программа 1: Расчёт теоретического расхода краски -->
-            <div class="program-content" id="paint-consumption">
-                <button class="back-btn" onclick="showMenu()">← Назад к меню</button>
-                <h2>Расчёт теоретического расхода краски</h2>
-                
-                <div class="input-group">
-                    <div class="form-group">
-                        <label for="product">Продукт:</label>
-                        <input list="paint_list" id="product" value="" placeholder="Выберите или введите продукт">
-                        <datalist id="paint_list">
-                            <option value="Литабонд Винил">
-                            <option value="Литабонд">
-                            <option value="Литакоут Акрил">
-                            <option value="Литакоут Алкид">
-                            <option value="Литакоут Классик">
-                            <option value="Литакоут Матт">
-                            <option value="Литакоут Плюс">
-                            <option value="Литакоут Флекси">
-                            <option value="Литакоут Фрост">
-                            <option value="Литакоут Фрост  ">
-                            <option value="Литакоут Фрост У  ">
-                            <option value="Литакоут Футура">
-                            <option value="Литакоут Экспресс Алкид">
-                            <option value="Литакоут Эпокс">
-                            <option value="Литалак Сил">
-                            <option value="Литамастик 180">
-                            <option value="Литамастик 190">
-                            <option value="Литамастик 190 Ст">
-                            <option value="Литамастик 280">
-                            <option value="Литамастик 287">
-                            <option value="Литамастик 290">
-                            <option value="Литамастик 290 Ст">
-                            <option value="Литамастик Универсал 10">
-                            <option value="Литамастик Универсал 20">
-                            <option value="Литапрайм 500">
-                            <option value="Литапрайм Акрил">
-                            <option value="Литапрайм Гидро">
-                            <option value="Литапрайм Сил">
-                            <option value="Литапрайм Спринт">
-                            <option value="Литапрайм Финиш">
-                            <option value="Литапрайм Цинк 80">
-                            <option value="Литапрайм Цинк ЭС">
-                            <option value="Литапрайм Экспресс Алкид">
-                            <option value="Литапрайм Экспресс МИО">
-                            <option value="Литапрайм Экспресс Мульти">
-                            <option value="Литапрайм Экспресс">
-                            <option value="Литапрайм Экспресс Ф">
-                            <option value="Литатанк АС">
-                            <option value="Литатанк Классик">
-                            <option value="Литатанк Плюс">
-                            <option value="Литатанк Стандарт">
-                            <option value="Литатанк Стронг">
-                            <option value="Литатанк ЦПВ">
-                            <option value="Литатерм 250">
-                            <option value="Литатерм Финиш">
-                            <option value="Литатерм Цинк 540">
-                            <option value="Литатерм Цинк ЭС">
-                            <option value="Литачар Акрил">
-                            <option value="Литачар Изотерм Э">
-                            <option value="Литачар Эпокс">
-                            <option value="Литум Бриз">
-                            <option value="Литум Колор ОР">
-                            <option value="Литум Сирокко">
-                            <option value="Литум Шоппраймер Цинк">
-                            <option value="Литум Шоппраймер ЭП">
-                            <option value="Литум Экстрим">
-                        </datalist>
-                    </div>
+            <div class="form-group">
+                <label for="color">Цвет:</label>
+                <input type="text" id="color" value="" placeholder="Например Серый">
+            </div>
 
-                    <div class="form-group">
-                        <label for="color">Цвет:</label>
-                        <input type="text" id="color" value="" placeholder="Например Серый">
-                    </div>
+            <div class="form-group">
+                <label for="batch_number">Номер партии:</label>
+                <input type="text" id="batch_number" value="" placeholder="например LO0-2222.1.2">
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="batch_number">Номер партии:</label>
-                        <input type="text" id="batch_number" value="" placeholder="например LO0-2222.1.2">
-                    </div>
+        <section class="form-section">
+            <h2 class="section-title">📊 Данные для расчета</h2>
+            
+            <div class="form-grid">
+                <div class="form-group">
+                    <label for="dft">Толщина сухой плёнки (DFT), мкм:</label>
+                    <input type="number" id="dft" value="34" step="0.1" placeholder="Например: 34" inputmode="decimal">
                 </div>
 
-                <section class="form-section">
-                    <h2 class="section-title">📊 Данные для расчета</h2>
-                    
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="dft">Толщина сухой плёнки (DFT), мкм:</label>
-                            <input type="number" id="dft" value="34" step="0.1" placeholder="Например: 34" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mass_blank">Вес стекла без краски (г):</label>
-                            <input type="number" id="mass_blank" value="54.5547" step="0.0001" placeholder="Например: 54.5547" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mass_wet">Вес стекла с мокрой краской (г):</label>
-                            <input type="number" id="mass_wet" value="55.0467" step="0.0001" placeholder="Например: 55.0467" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="mass_dry">Вес стекла с сухой краской (г):</label>
-                            <input type="number" id="mass_dry" value="54.8940" step="0.0001" placeholder="Например: 54.8940" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="length_mm">Длина пленки (мм):</label>
-                            <input type="number" id="length_mm" value="100" step="0.1" placeholder="Например: 100" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="width_mm">Ширина пленки (мм):</label>
-                            <input type="number" id="width_mm" value="64.65" step="0.1" placeholder="Например: 64.65" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="ms_percent">МДНВ (для 2-комп. смесь А+В), %:</label>
-                            <input type="number" id="ms_percent" value="66.61" step="0.01" min="0" max="100" placeholder="Например: 66.61" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="rho_wet">Плотность краски (для 2-комп. смесь А+В), г/см³:</label>
-                            <input type="number" id="rho_wet" value="1.269" step="0.001" placeholder="Например: 1.269" inputmode="decimal">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="contrast">Коэффициент контрастности (0–1):</label>
-                            <input type="number" id="contrast" value="0.87" step="0.01" min="0" max="1" placeholder="Например: 0.87" inputmode="decimal">
-                        </div>
-                    </div>
-
-                    <div class="button-group">
-                        <button class="calculate-btn" onclick="calculateConsumption()">🚀 Рассчитать</button>
-                        <button class="pdf-btn" onclick="printWithAllData()">
-                            <span class="pdf-btn-text">📄 Сохранить результаты в формате PDF</span>
-                            <div class="pdf-hint">Чтобы сохранить в формате PDF, в поле "Принтер" выберите "Сохранить как PDF"</div>
-                        </button>
-                    </div>
-                </section>
-
-                <section class="results-section">
-                    <h2>📈 Результаты расчёта</h2>
-                    <div id="result-consumption">
-                        <div class="result-item">
-                            <span class="result-label">Введите данные и нажмите "Рассчитать"</span>
-                        </div>
-                    </div>
-                </section>
-            </div>
-
-            <!-- Программа 2: Доводка показателя красящей способности основы Е170 -->
-            <div class="program-content" id="color-strength">
-                <button class="back-btn" onclick="showMenu()">← Назад к меню</button>
-                <h2>Доводка показателя красящей способности основы Е170</h2>
-                
-                <div class="form-section">
-                    <div class="form-grid">
-                        <div class="form-group">
-                            <label for="product-base">Выберите базу:</label>
-                            <select id="product-base" onchange="updateMass()">
-                                <option value="">— Выберите —</option>
-                                <option value="0">Литакоут Фрост База 1</option>
-                                <option value="1">Литакоут Фрост База 2</option>
-                                <option value="2">Литакоут Фрост У База 1</option>
-                                <option value="3">Литакоут Фрост У База 2</option>
-                                <option value="4">Литакоут Классик База 1</option>
-                                <option value="5">Литакоут Классик База 2</option>
-                                <option value="6">Литакоут Акрил База 1</option>
-                                <option value="7">Литакоут Акрил База 2</option>
-                                <option value="8">Литакоут Алкид База 1</option>
-                                <option value="9">Литакоут Алкид База 2</option>
-                                <option value="10">Литакоут Флекси База 1</option>
-                                <option value="11">Литакоут Флекси База 2</option>
-                                <option value="12">Литакоут Эпокс База 1</option>
-                                <option value="13">Литакоут Эпокс База 2</option>
-                                <option value="14">Литамастик 190/290 База 1</option>
-                                <option value="15">Литапрайм Экспресс Мульти База 1</option>
-                                <option value="16">Литатерм Финиш База 1</option>
-                                <option value="17">Литатерм Финиш База 2</option>
-                                <option value="18">Литапрайм Акрил База 1</option>
-                                <option value="19">Литапрайм Акрил База 2</option>
-                                <option value="20">Литапрайм Гидро База 1</option>
-                            </select>
-                        </div>
-
-                        <div class="form-group">
-                            <label for="batchMass">Фактическая масса партии (кг):</label>
-                            <input type="number" id="batchMass" step="0.1" placeholder="Масса партии">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="tio2">Фактическое содержание TiO₂ (кг):</label>
-                            <input type="number" id="tio2" step="0.1" placeholder="Например: 700">
-                        </div>
-
-                        <div class="form-group">
-                            <label for="strength">Фактическая сила цвета (DIN 53234):</label>
-                            <input type="number" id="strength" step="0.1" placeholder="Например: 92.5">
-                        </div>
-                    </div>
-
-                    <div class="button-group">
-                        <button class="calculate-btn" onclick="calculateStrength()">Рассчитать доводку</button>
-                    </div>
+                <div class="form-group">
+                    <label for="mass_blank">Вес стекла без краски (г):</label>
+                    <input type="number" id="mass_blank" value="54.5547" step="0.0001" placeholder="Например: 54.5547" inputmode="decimal">
                 </div>
 
-                <section class="results-section">
-                    <h2>📈 Результаты расчёта</h2>
-                    <div id="result-strength"></div>
-                </section>
+                <div class="form-group">
+                    <label for="mass_wet">Вес стекла с мокрой краской (г):</label>
+                    <input type="number" id="mass_wet" value="55.0467" step="0.0001" placeholder="Например: 55.0467" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="mass_dry">Вес стекла с сухой краской (г):</label>
+                    <input type="number" id="mass_dry" value="54.8940" step="0.0001" placeholder="Например: 54.8940" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="length_mm">Длина пленки (мм):</label>
+                    <input type="number" id="length_mm" value="100" step="0.1" placeholder="Например: 100" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="width_mm">Ширина пленки (мм):</label>
+                    <input type="number" id="width_mm" value="64.65" step="0.1" placeholder="Например: 64.65" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="ms_percent">МДНВ (для 2-комп. смесь А+В), %:</label>
+                    <input type="number" id="ms_percent" value="66.61" step="0.01" min="0" max="100" placeholder="Например: 66.61" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="rho_wet">Плотность краски (для 2-комп. смесь А+В), г/см³:</label>
+                    <input type="number" id="rho_wet" value="1.269" step="0.001" placeholder="Например: 1.269" inputmode="decimal">
+                </div>
+
+                <div class="form-group">
+                    <label for="contrast">Коэффициент контрастности (0–1):</label>
+                    <input type="number" id="contrast" value="0.87" step="0.01" min="0" max="1" placeholder="Например: 0.87" inputmode="decimal">
+                </div>
             </div>
-        </div>
+
+            <div class="button-group">
+                <button class="calculate-btn" onclick="calculate()">🚀 Рассчитать</button>
+                <button class="pdf-btn" onclick="printWithAllData()">
+                    <span class="pdf-btn-text">📄 Сохранить результаты в формате PDF</span>
+                    <div class="pdf-hint">Чтобы сохранить в формате PDF, в поле "Принтер" выберите "Сохранить как PDF"</div>
+                </button>
+            </div>
+        </section>
+
+        <section class="results-section">
+            <h2>📈 Результаты расчёта</h2>
+            <div id="result">
+                <div class="result-item">
+                    <span class="result-label">Введите данные и нажмите "Рассчитать"</span>
+                </div>
+            </div>
+        </section>
     </div>
 
     <script>
-        // Функции навигации
-        function showProgram(programId) {
-            document.getElementById('welcomeMessage').style.display = 'none';
-            document.getElementById('programsMenu').style.display = 'none';
-            
-            const programs = document.querySelectorAll('.program-content');
-            programs.forEach(program => {
-                program.classList.remove('active');
-            });
-            
-            document.getElementById(programId).classList.add('active');
-        }
-
-        function showMenu() {
-            document.getElementById('welcomeMessage').style.display = 'block';
-            document.getElementById('programsMenu').style.display = 'grid';
-            
-            const programs = document.querySelectorAll('.program-content');
-            programs.forEach(program => {
-                program.classList.remove('active');
-            });
-        }
-
-        // Программа 1: Расчёт теоретического расхода краски
-        function calculateConsumption() {
+        function calculate() {
             const product = document.getElementById('product').value;
             const color = document.getElementById('color').value;
             const batchNumber = document.getElementById('batch_number').value;
@@ -766,7 +573,7 @@
 
             if (isNaN(dft) || isNaN(mass_blank) || isNaN(mass_wet_full) || isNaN(mass_dry_full) || isNaN(L_mm) || isNaN(W_mm) || isNaN(ms_percent) || isNaN(rho_wet) || isNaN(contrast) ||
                 dft <= 0 || mass_blank <= 0 || mass_wet_full <= mass_blank || mass_dry_full <= mass_blank || L_mm <= 0 || W_mm <= 0 || ms_percent < 0 || ms_percent > 100 || rho_wet <= 0 || contrast < 0 || contrast > 1) {
-                document.getElementById('result-consumption').innerHTML = `
+                document.getElementById('result').innerHTML = `
                     <div class="result-item">
                         <span class="result-label">⚠️ Ошибка:</span>
                         <span class="result-value">Пожалуйста, введите корректные данные.</span>
@@ -787,7 +594,7 @@
             const V_dry = (A * dft) / 10000; // объём сухой плёнки в см³
             const rho_dry = m_dry / V_dry; // плотность сухой плёнки
 
-            // ИСПРАВЛЕННЫЙ РАСЧЁТ: Объёмное содержание сухого остатка
+            // Объёмное содержание сухого остатка
             const volume_wet = m_wet / rho_wet; // объём мокрой краски в см³
             const vs_percent = (V_dry / volume_wet) * 100; // объёмное содержание сухого остатка в %
 
@@ -804,7 +611,7 @@
             const coverage_no_contrast_m2_per_kg = 1 / (R_no_contrast * rho_wet);
             const coverage_with_contrast_m2_per_kg = 1 / (R_with_contrast * rho_wet);
 
-            document.getElementById('result-consumption').innerHTML = `
+            document.getElementById('result').innerHTML = `
                 <div class="result-item">
                     <span class="result-label">Продукт:</span>
                     <span class="result-value">${product || 'Не указано'}</span>
@@ -996,7 +803,7 @@
                     </div>
 
                     <div id="print-results">
-                        ${document.getElementById('result-consumption').innerHTML}
+                        ${document.getElementById('result').innerHTML}
                     </div>
                 </body>
                 </html>
@@ -1005,90 +812,7 @@
             printWindow.print();
         }
 
-        // Программа 2: Доводка показателя красящей способности основы Е170
-        const products = [
-            [3500, 715],  // 0
-            [3300, 310],  // 1
-            [3150, 650],  // 2
-            [3150, 310],  // 3
-            [3370, 725],  // 4
-            [3300, 325],  // 5
-            [2500, 400],  // 6
-            [2650, 200],  // 7
-            [2500, 425],  // 8
-            [2500, 200],  // 9
-            [2900, 475],  // 10
-            [2850, 263],  // 11
-            [3200, 1175], // 12
-            [2700, 400],  // 13
-            [4000, 525],  // 14
-            [3650, 425],  // 15
-            [3150, 475],  // 16
-            [2550, 175],  // 17
-            [2780, 350],  // 18
-            [2780, 180],  // 19
-            [2520, 250]   // 20
-        ];
-
-        const TARGET = 100;
-        const TOL_LOW = 96;
-        const TOL_HIGH = 104;
-
-        function updateMass() {
-            const idx = document.getElementById('product-base').value;
-            const massInput = document.getElementById('batchMass');
-            if (idx !== '') {
-                massInput.value = products[idx][0];
-            } else {
-                massInput.value = '';
-            }
-        }
-
-        function calculateStrength() {
-            const productSelect = document.getElementById('product-base');
-            const batchMassInput = document.getElementById('batchMass');
-            const tio2Input = document.getElementById('tio2');
-            const strengthInput = document.getElementById('strength');
-            const resultDiv = document.getElementById('result-strength');
-
-            const idx = productSelect.value;
-            const batchMass = parseFloat(batchMassInput.value);
-            const tio2 = parseFloat(tio2Input.value);
-            const strength = parseFloat(strengthInput.value);
-
-            if (idx === '' || isNaN(batchMass) || isNaN(tio2) || isNaN(strength)) {
-                resultDiv.innerHTML = '<b>Ошибка:</b> Заполните все поля.';
-                return;
-            }
-
-            let message = '';
-
-            if (strength >= TOL_LOW && strength <= TOL_HIGH) {
-                message = `✅ Сила цвета (${strength}) в допуске [${TOL_LOW}–${TOL_HIGH}]. Доводка не требуется.`;
-            } else if (strength < TOL_LOW) {
-                const add_neutral = batchMass * (TARGET / strength - 1);
-                message = `
-                    ⚠️ База <b>сильная</b> (сила = ${strength.toFixed(1)} < ${TOL_LOW}).<br>
-                    ➕ Рекомендуется добавить <b>${add_neutral.toFixed(2)} кг нейтральной базы</b>.<br>
-                    После разбавления сила цвета будет ≈ ${TARGET}.
-                `;
-            } else if (strength > TOL_HIGH) {
-                const tio2_needed = tio2 * (strength / TARGET);
-                const add_tio2 = tio2_needed - tio2;
-                message = `
-                    ⚠️ База <b>слабая</b> (сила = ${strength.toFixed(1)} > ${TOL_HIGH}).<br>
-                    ➕ Рекомендуется добавить <b>${add_tio2.toFixed(2)} кг TiO₂</b>.<br>
-                    После добавки сила цвета будет ≈ ${TARGET}.
-                `;
-            }
-
-            resultDiv.innerHTML = message;
-        }
-
-        // Инициализация
-        window.onload = function() {
-            calculateConsumption();
-        };
+        window.onload = calculate;
     </script>
 
 </body>
